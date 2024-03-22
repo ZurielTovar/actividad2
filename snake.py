@@ -40,34 +40,42 @@ def move_food():
     else:
         move_food()
 
-
 def move():
     """Move snake forward one segment."""
-    head = snake[-1].copy()
-    head.move(aim)
-
-    if not inside(head) or head in snake:
-        square(head.x, head.y, 9, 'red')
-        update()
-        return
-
-    snake.append(head)
-    if head == food:
-        print('Snake:', len(snake))
-        food.x = randrange(-15, 15) * 10
-        food.y = randrange(-15, 15) * 10
+    colors = ['yellow', 'blue', 'pink', 'purple', 'orange']
+    color_food = randrange(4)
+    color_snake = randrange(5)
+    
+    if color_food == color_snake:
+        move()
     else:
-        snake.pop(0)
-        move_food()
+        random_food_color = colors[color_food]
+        random_snake_color = colors[color_snake]
+        
+        head = snake[-1].copy()
+        head.move(aim)
+        if not inside(head) or head in snake:
+            square(head.x, head.y, 9, random_snake_color)
+            update()
+            return
 
-    clear()
+        snake.append(head)
+        if head == food:
+            print('Snake:', len(snake))
+            food.x = randrange(-15, 15) * 10
+            food.y = randrange(-15, 15) * 10
+        else:
+            snake.pop(0)
+            move_food()
 
-    for body in snake:
-        square(body.x, body.y, 9, 'black')
+        clear()
 
-    square(food.x, food.y, 9, 'green')
-    update()
-    ontimer(move, 100)
+        for body in snake:
+            square(body.x, body.y, 9, random_snake_color)
+
+        square(food.x, food.y, 9, random_food_color)
+        update()
+        ontimer(move, 100)
 
 
 setup(420, 420, 370, 0)

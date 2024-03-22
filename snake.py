@@ -30,6 +30,7 @@ def inside(head):
 
 
 def move_food():
+    #SE HIZO UNA FUNCION QUE MUEVE LA COMIDA
     direction = [vector(0, 10), vector(0, -10), vector(10, 0), vector(-10, 0)]
     random_number = randrange(4)
     random_direction = direction[random_number]
@@ -42,6 +43,7 @@ def move_food():
 
 def move():
     """Move snake forward one segment."""
+    #SE MODIFICO MOVE PARA QUE CAMBIEN LOS COLORES ALATORIAMENTE  
     colors = ['yellow', 'blue', 'pink', 'purple', 'orange']
     color_food = randrange(4)
     color_snake = randrange(5)
